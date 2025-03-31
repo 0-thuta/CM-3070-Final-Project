@@ -1,0 +1,16 @@
+﻿# The important Python Packages REQUIRED to run the scripts are listed below 
+# NEED TO INSTALL THEM FIRST BEFORE RUNNING THE SCRIPTS!
+# RUN py -m pip install -r requirements.txt in your python environment terminal to execute text file
+# for MAC please use python -m pip install -r requirements.txt
+# can also use pip install -r requirements.txt
+################ READ FIRST !! #####################################
+Flask==2.3.2
+Flask-Login==0.6.1
+opencv-python==4.7.0.72
+opencv-python-headless==4.7.0.72
+pymysql==1.0.2
+smtplib==3.6.0
+python-dotenv==0.21.1
+pyyaml==6.0
+flask-sqlalchemy==3.0.3
+flask-mail==0.9.1
