@@ -52,7 +52,7 @@ Tests for the system to ensures that the correct cameras are selected, even if t
 The main application code base is the flask-app.py. After setting up the Prerequisites and Requirements including the database, can run it by writing **python flask-app.py** in the terminal.
 The web application will be Running on **http://127.0.0.1:5000**
 
-##Acknowledgments
+## Acknowledgments
 
 - YOLOv8 for real-time object detection.
 - Flask for building the web application.
