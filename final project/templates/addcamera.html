@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Streaming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+
+    <div class="max-w-4xl mx-auto p-6">
+        <h1 class="text-3xl font-semibold text-center text-gray-800 mb-6">Select a Camera</h1>
+
+        <section class="mb-8">
+            <form method="GET" action="">
+                <div class="flex items-center space-x-4">
+                    <label for="camera_select" class="text-lg font-medium text-gray-700">Choose a camera:</label>
+                    <select id="camera_select" name="camera_select" onchange="changeCamera()" class="border border-gray-300 p-2 rounded-md">
+                        <option value="">--Select Camera--</option>
+                        {% for camera in cameras %}
+                            <option value="{{ camera['camera_id'] }}" data-name="{{ camera['camera_name'] }}">{{ camera['camera_name'] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </form>
+        </section>
+
+        <section class="mb-8">
+            <div id="video-container" class="bg-white p-4 shadow-md rounded-lg">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Video Preview</h3>
+                <img id="video" src="" class="w-full h-auto rounded-md" />
+            </div>
+        </section>
+
+        <section>
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Add a New Camera</h3>
+            <form action="/addcameras" method="POST" class="space-y-4 bg-white p-6 shadow-md rounded-lg">
+                <input type="hidden" id="camera_model" name="camera_model" required>
+
+                <div class="space-y-2">
+                    <label for="camera_index" class="text-lg text-gray-700">Camera Index:</label>
+                    <input type="number" id="camera_index" name="camera_index" class="w-full p-2 border border-gray-300 rounded-md" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="camera_zone" class="text-lg text-gray-700">Camera Zone:</label>
+                    <input type="text" id="camera_zone" name="camera_zone" class="w-full p-2 border border-gray-300 rounded-md" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="zone_x1" class="text-lg text-gray-700">Zone X1:</label>
+                    <input type="number" id="zone_x1" name="zone_x1" class="w-full p-2 border border-gray-300 rounded-md" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="zone_y1" class="text-lg text-gray-700">Zone Y1:</label>
+                    <input type="number" id="zone_y1" name="zone_y1" class="w-full p-2 border border-gray-300 rounded-md" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="zone_x2" class="text-lg text-gray-700">Zone X2:</label>
+                    <input type="number" id="zone_x2" name="zone_x2" class="w-full p-2 border border-gray-300 rounded-md" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="zone_y2" class="text-lg text-gray-700">Zone Y2:</label>
+                    <input type="number" id="zone_y2" name="zone_y2" class="w-full p-2 border border-gray-300 rounded-md" required>
+                </div>
+
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-200">Add Camera</button>
+            </form>
+
+            <div class="mt-6 text-center">
+                <a href="{{ url_for('setcamera') }}" class="text-blue-500 hover:underline">Back to Camera Management</a>
+            </div>
+
+        </section>
+    </div>
+
+    <script type="text/javascript">
+    function changeCamera() {
+        var cameraSelect = document.getElementById("camera_select");
+        var cameraId = cameraSelect.value;
+        var cameraName = cameraSelect.options[cameraSelect.selectedIndex].getAttribute("data-name");
+
+        if (cameraId) {
+            document.getElementById("video").src = "/video_feed/" + cameraId;
+            document.getElementById("camera_model").value = cameraName;
+
+            console.log("Selected Camera ID:", cameraId);
+            console.log("Camera Name:", cameraName);
+        } else {
+            document.getElementById("video").src = "";
+            document.getElementById("camera_model").value = "";
+            document.getElementById("camera_index").value = "";
+        }
+    }
+    </script>
+
+</body>
+</html>

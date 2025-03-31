@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-black p-6">
+    <h1 id="name" class="text-3xl font-bold text-center mb-6">{{ video.video_name }}</h1>
+
+    <div class="flex justify-center items-center mb-4">
+        <video src="{{ url_for('static', filename='intrusions videos/' ~ video.video_name) }}" 
+               id="videoPlayer" 
+               controls 
+               width="960" 
+               height="540">
+        </video>
+    </div>
+
+    <div class="flex justify-center space-x-4 mb-4">
+        <button onclick="playVideo()" class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded-lg">Play</button>
+        <button onclick="pauseVideo()" class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded-lg">Pause</button>
+        <button onclick="rewindVideo()" class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded-lg">Rewind 5s</button>
+        <button onclick="skipVideo()" class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded-lg">Skip 5s</button>
+        <button onclick="changeSpeed(0.5)" class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded-lg">0.5x</button>
+        <button onclick="changeSpeed(1)" class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded-lg">1x</button>
+        <button onclick="changeSpeed(1.5)" class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded-lg">1.5x</button>
+        <button onclick="changeSpeed(2)" class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded-lg">2x</button>
+    </div>
+
+    <div class="flex justify-center">
+        <button onclick="window.history.back()" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">Back</button>
+    </div>
+
+    <script>
+        let video = document.getElementById("videoPlayer");
+
+        function playVideo() {
+            video.play();
+        }
+
+        function pauseVideo() {
+            video.pause();
+        }
+
+        function rewindVideo() {
+            video.currentTime -= 5;
+        }
+
+        function skipVideo() {
+            video.currentTime += 5;
+        }
+
+        function changeSpeed(speed) {
+            video.playbackRate = speed;
+        }
+
+        // Log video URL and name to console (for debugging purposes)
+        const videoElement = document.getElementById('videoPlayer');
+        console.log('Video URL:', videoElement.src);
+        console.log('Video Name:', document.getElementById('name').innerText);
+    </script>
+</body>
+</html>

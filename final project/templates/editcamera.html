@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Camera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+
+    <div class="max-w-6xl mx-auto p-6">
+        <h1 class="text-3xl font-semibold text-center text-gray-800 mb-6">Edit Camera Details</h1>
+
+        <section class="bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-2xl font-medium text-gray-800 mb-4">Camera ID: {{ camera.camera_id }}</h2>
+            
+            <form method="POST">
+                <div class="mb-4">
+                    <label for="camera_model" class="block text-sm font-medium text-gray-700">Camera Model</label>
+                    <input type="text" id="camera_model" name="camera_model" value="{{ camera.camera_model }}" class="mt-2 p-2 w-full border border-gray-300 rounded-md" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="camera_zone" class="block text-sm font-medium text-gray-700">Camera Zone</label>
+                    <input type="text" id="camera_zone" name="camera_zone" value="{{ camera.camera_zone }}" class="mt-2 p-2 w-full border border-gray-300 rounded-md" required>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="zone_x1" class="block text-sm font-medium text-gray-700">Zone X1</label>
+                        <input type="number" id="zone_x1" name="zone_x1" value="{{ camera.zone_x1 }}" class="mt-2 p-2 w-full border border-gray-300 rounded-md" required>
+                    </div>
+                    <div>
+                        <label for="zone_y1" class="block text-sm font-medium text-gray-700">Zone Y1</label>
+                        <input type="number" id="zone_y1" name="zone_y1" value="{{ camera.zone_y1 }}" class="mt-2 p-2 w-full border border-gray-300 rounded-md" required>
+                    </div>
+                    <div>
+                        <label for="zone_x2" class="block text-sm font-medium text-gray-700">Zone X2</label>
+                        <input type="number" id="zone_x2" name="zone_x2" value="{{ camera.zone_x2 }}" class="mt-2 p-2 w-full border border-gray-300 rounded-md" required>
+                    </div>
+                    <div>
+                        <label for="zone_y2" class="block text-sm font-medium text-gray-700">Zone Y2</label>
+                        <input type="number" id="zone_y2" name="zone_y2" value="{{ camera.zone_y2 }}" class="mt-2 p-2 w-full border border-gray-300 rounded-md" required>
+                    </div>
+                </div>
+                <div class="mt-6 text-center">
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-200">Update Camera</button>
+                </div>
+            </form>
+        <div class="mt-6 text-center">
+            <a href="{{ url_for('setcamera') }}" class="text-blue-500 hover:underline">Back to Camera Management</a>
+        </div>
+    </div>
+
+</body>
+</html>

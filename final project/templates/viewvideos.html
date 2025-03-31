@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <style>
+        body {
+            background-color: #f3f4f6;
+            color: black;
+            padding: 24px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 24px;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            background-color: #4b5563;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #374151;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="name">{{ video.video_name }}</h1>
+
+    <div class="video-container">
+        <video src="{{ url_for('static', filename='intrusions_videos/' ~ video.video_name) }}" 
+               id="videoPlayer" 
+               controls 
+               width="960" 
+               height="540">
+        </video>
+    </div>
+
+    <div class="controls">
+        <button onclick="playVideo()" class="btn">Play</button>
+        <button onclick="pauseVideo()" class="btn">Pause</button>
+        <button onclick="rewindVideo()" class="btn">Rewind 5s</button>
+        <button onclick="skipVideo()" class="btn">Skip 5s</button>
+        <button onclick="changeSpeed(0.5)" class="btn">0.5x</button>
+        <button onclick="changeSpeed(1)" class="btn">1x</button>
+        <button onclick="changeSpeed(1.5)" class="btn">1.5x</button>
+        <button onclick="changeSpeed(2)" class="btn">2x</button>
+    </div>
+
+    <script>
+        let video = document.getElementById("videoPlayer");
+
+        function playVideo() {
+            video.play();
+        }
+
+        function pauseVideo() {
+            video.pause();
+        }
+
+        function rewindVideo() {
+            video.currentTime -= 5;
+        }
+
+        function skipVideo() {
+            video.currentTime += 5;
+        }
+
+        function changeSpeed(speed) {
+            video.playbackRate = speed;
+        }
+
+        console.log('Video URL:', video.src);
+        console.log('Video Name:', document.getElementById('name').innerText);
+    </script>
+</body>
+</html>

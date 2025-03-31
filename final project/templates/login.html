@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Login</title>
+</head>
+<body>
+    {% if errorMessage %}
+        <div id="errorMessage" class="bg-red-500 text-white p-4 rounded-lg mb-4 shadow-md animate-pulse">
+            {{ errorMessage | safe }}
+        </div>
+    {% endif %}
+    {% if successMessage %}
+        <div id="successMessage" class="bg-green-500 text-white p-4 rounded-lg mb-4 shadow-md animate-pulse">
+            {{ successMessage }}
+        </div>
+    {% endif %}
+
+    <div class="flex min-h-screen flex-col items-center justify-center">
+        <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-md">
+            <h1 class="mb-6 text-center text-2xl font-semibold text-gray-800">Login</h1>
+            <form action="/login" method="POST" class="space-y-4">
+                <input type="text" name="username" placeholder="Name" required class="block w-full rounded-md border border-gray-300 px-4 py-2 transition duration-300 ease-in-out hover:shadow-md focus:border-indigo-500 focus:outline-none" />
+                <input type="password" name="password" placeholder="Password" required class="block w-full rounded-md border border-gray-300 px-4 py-2 transition duration-300 ease-in-out hover:shadow-md focus:border-indigo-500 focus:outline-none" />
+                <button type="submit" class="w-full transform rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition duration-300 ease-in-out hover:scale-105 hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-800 focus:ring-offset-2">Login</button>
+            </form>
+            <div class="mt-4 text-center">
+                Don't have an account? 
+                <a href="/register" class="transform text-indigo-600 transition duration-300 ease-in-out hover:scale-105 hover:text-indigo-900">Register here</a>
+            </div>
+        </div>
+    </div>
+</body>
+<script></script>
+</html>
